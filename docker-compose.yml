@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: lyftr-api
+    environment:
+      DATABASE_URL: "sqlite:////data/app.db"
+      WEBHOOK_SECRET: "${WEBHOOK_SECRET:-testsecret}"
+      LOG_LEVEL: "INFO"
+    volumes:
+      - data:/data
+    ports:
+      - "8000:8000"
+
+volumes:
+  data:
